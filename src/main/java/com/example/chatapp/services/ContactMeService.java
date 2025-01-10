@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 public class ContactMeService {
 
     public boolean sendEmail(Map<String, String> data) {
-        String name = (String) formData.get("name");
-        String email = (String) formData.get("email");
-        String body = (String) formData.get("body");
+        String name = (String) data.get("name");
+        String email = (String) data.get("email");
+        String body = (String) data.get("body");
+        
         return true;
     }
 }
