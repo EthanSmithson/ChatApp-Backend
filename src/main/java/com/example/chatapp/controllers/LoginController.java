@@ -17,21 +17,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class ContactMeController {
+public class LoginController {
 
 	@Autowired
     private ContactMeService contactMeService;
 
 	@CrossOrigin(origins = "http://localhost:3000/")
-	@PostMapping("/contactMe")
-		public Object ContactMe(@RequestBody Map<String, String> formData) {
+	@PostMapping("/login")
+		public Object login(@RequestBody Map<String, String> formData) {
 
-			Map<String, Boolean> data = contactMeService.validate(formData);
-			if(data.values().contains(false)) {
-				return new ResponseEntity<>(data, HttpStatus.OK);
-			} else {
-				contactMeService.sendEmail(formData);
-				return new ResponseEntity<>(data, HttpStatus.OK);
-			}
+            System.out.println(formData);
+            
+            return formData;
 		}
 }
