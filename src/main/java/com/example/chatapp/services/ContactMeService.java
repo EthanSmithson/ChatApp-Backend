@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
