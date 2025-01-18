@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.chatapp.services.*;
-
+import com.example.chatapp.utils.*;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -20,14 +20,20 @@ import java.util.Map;
 public class RegisterController {
 
 	@Autowired
-    private UserService userService;
+    private RegisterService registerService;
+	private UserService userService;
 
 	@CrossOrigin(origins = "http://localhost:3000/")
 	@PostMapping("/register")
 		public Object register(@RequestBody Map<String, String> formData) {
-
-            // userService.createUser(formData);
-            System.out.println(formData);
+			Boolean passwordMatch = registerService.passwordsMatch(formData);
+			if (passwordMatch) {
+				System.out.println("worked");
+				Person person = new Person(formData.get("firstName"), formData.get("lastName"), formData.get("email"), formData.get("username"), formData.get("password"));
+				userService.createUser(person);
+			} else {
+				System.out.print("wtf");
+			}
 
             
             return formData;

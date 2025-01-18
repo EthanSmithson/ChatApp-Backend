@@ -4,11 +4,15 @@ public class Person {
     String firstName;
     String lastName;
     String email;
-    String cellNum;
+    String username;
     String password;
 
-    public static void Person(String firstName, String lastName) {
-
+    public Person(String firstName, String lastName, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
     }
-     
+
 }
