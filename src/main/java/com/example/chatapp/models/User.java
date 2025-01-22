@@ -14,14 +14,16 @@ public class User {
     private String username;
     private String password;
     private String confirmPassword;
+    private Integer confirmed;
 
-    public User(Long id, String firstName, String lastName, String email, String username, String password) {
+    public User(Long id, String firstName, String lastName, String email, String username, String password, Integer confirmed) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.confirmed = 0;
     }
 
     public String getPassword() {
@@ -42,6 +44,10 @@ public class User {
 
     public Long getUserId() {
         return this.id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
     }
 
 }

@@ -40,4 +40,10 @@ public class UserService {
         return true;
     }
 
+    public void updateToConfirm(String email) {
+        Long emailExists = userRepository.findByEmail(email);
+        System.out.println(emailExists);
+        // userRepository.updateToConfirm(email);
+    }
+
 }

@@ -1,24 +1,54 @@
 package com.example.chatapp.services;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.chatapp.dto.MailRequest;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.mail.SimpleMailMessage;
+
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 
 @Service
+@RequiredArgsConstructor
 public class RegistrationService {
 
-    @Autowired
-    private JavaMailSender mailSender;
-    
-    public static Boolean sendConfirmation(String email) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setFrom("chatapp.com");
-        message.setSubject("Please Confirm Your Account");
-        message.setText("Confirm");
-        
-        mailSender.send(message);
-    
+    private final JavaMailSender mailSender;
+    private final TemplateEngine templateEngine;
+
+    @Value("${spring.mail.username}")
+    private String fromMail;
+
+    @Async
+    public Boolean sendConfirmMail(MailRequest request) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+
+        mimeMessageHelper.setFrom(fromMail);
+        mimeMessageHelper.setTo(request.getToEmail());
+        mimeMessageHelper.setSubject(request.getSubject());
+
+        if(request.isHTML()) {
+            Context context = new Context();
+            /*
+            content is the variable defined in our HTML template within the div tag
+            */
+            context.setVariable("content", request.getMessage());
+            String processedString = templateEngine.process("confirmEmail", context);
+
+            mimeMessageHelper.setText(processedString, true);
+        } else {
+            mimeMessageHelper.setText(request.getMessage(), false);
+        }
+
+        mailSender.send(mimeMessage);
         return true;
     }
 }
