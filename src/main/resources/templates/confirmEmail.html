@@ -4,43 +4,46 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
-    <body>
-        <div style="
-            width: fit-content;
-            height: fit-content;
-            background: #26282b;
-            padding: 15px;
-            color: white;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-direction: column;
-            padding: 15px;" 
-            >
+    <body style="
+    text-align: center;
+    width: fit-content;
+    height: 400px;
+    background: #26282b;
+    color: white;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;">
             <div style="
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;">
-                <h3>Hello</h3> <h3 style="font-style: none;" th:utext="${fname}">,</h3>
+            justify-content: center;
+            margin:  0 auto;">
+                <h3>Hello <h3 style="font-style: none; margin-left: 3px;" th:utext="${fname}"></h3></h3><h3 style="margin-left: 1.5px;">,</h3>
             </div>
-            <h4 style="width: 100%; text-align: center;">
+            <h4 style="
+            width: 100%;
+            height: fit-content;
+            text-align: center;
+            margin-top: 40%;">
                 Please Confirm your Email Address to access all <br>
                 of the features on ChatApp!
             </h4>
-            <a style="text-decoration: none;
-            background: #5F85DB;
-            padding: 6px;
-            display: flex;
-            width: 50px;
-            height: 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 8%;" 
+            <a style="
+    text-decoration: none;
+    background: #5f85db;
+    padding: 8px;
+    width: 115px;
+    height: 19px;
+    border-radius: 12px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40%;
+    color: white;
+    display: block;
+    " 
             th:href="@{'http://localhost:8080/confirm?email=' + ${email}}">Confirm</a>
-        </div>
     </body>
 </html>
