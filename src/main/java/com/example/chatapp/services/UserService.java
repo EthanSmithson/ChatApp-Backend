@@ -2,6 +2,8 @@ package com.example.chatapp.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.example.chatapp.repositories.*;
 import java.util.*;
 import com.example.chatapp.models.*;
@@ -40,10 +42,17 @@ public class UserService {
         return true;
     }
 
-    public void updateToConfirm(String email) {
+    public Boolean updateToConfirm(String email) {
         Long emailExists = userRepository.findByEmail(email);
         System.out.println(emailExists);
-        // userRepository.updateToConfirm(email);
+        
+        if (emailExists != 1) {
+            throw new IllegalArgumentException("Email was not Found!");
+        }
+
+        userRepository.updateToConfirm(email);
+        return true;
+
     }
 
 }

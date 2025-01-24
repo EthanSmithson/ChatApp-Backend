@@ -45,9 +45,10 @@ public class RegisterController {
 				if (userService.createUser(formData)) {
 					MailRequest confirmEmail = new MailRequest();
 					confirmEmail.setToEmail(formData.getUserEmail());
-					confirmEmail.setSubject("Please Confirm Your email");
+					confirmEmail.setSubject("Confirm Email!");
 					confirmEmail.setMessage(formData.getUserEmail());
 					confirmEmail.setHTML(true);
+					confirmEmail.setName(formData.getFirstName());
 					Boolean confirmationSent = registrationService.sendConfirmMail(confirmEmail);
 					System.out.println(confirmationSent);
 					// registrationService.sendConfirmarion();

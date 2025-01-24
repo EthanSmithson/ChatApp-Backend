@@ -40,12 +40,14 @@ public class RegistrationService {
             /*
             content is the variable defined in our HTML template within the div tag
             */
-            context.setVariable("content", request.getMessage());
+            context.setVariable("email", request.getMessage());
+            context.setVariable("fname", request.getName());
             String processedString = templateEngine.process("confirmEmail", context);
 
             mimeMessageHelper.setText(processedString, true);
         } else {
             mimeMessageHelper.setText(request.getMessage(), false);
+            mimeMessageHelper.setText(request.getName(), false);
         }
 
         mailSender.send(mimeMessage);

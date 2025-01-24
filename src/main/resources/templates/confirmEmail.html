@@ -5,25 +5,42 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <div>
-            <h3 style="display: flex; flex-direction: row; word-spacing: 2px;">Hello <div style="font-style: none;" th:utext="${content}"></div>,</h3>
-            <input type="hidden" value="${content}" id="hiddenEmail"/>
-            <h4>
-                Please Confirm you Email Address to access all features!
+        <div style="
+            width: fit-content;
+            height: fit-content;
+            background: #26282b;
+            padding: 15px;
+            color: white;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 15px;" 
+            >
+            <div style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;">
+                <h3>Hello</h3> <h3 style="font-style: none;" th:utext="${fname}">,</h3>
+            </div>
+            <h4 style="width: 100%; text-align: center;">
+                Please Confirm your Email Address to access all <br>
+                of the features on ChatApp!
             </h4>
-            <!-- <a href="http://localhost:8080/confirm?email=${content}">Confirm</a> -->
-             <button id="confirmBtn">Confirm</button>
+            <a style="text-decoration: none;
+            background: #5F85DB;
+            padding: 6px;
+            display: flex;
+            width: 50px;
+            height: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8%;" 
+            th:href="@{'http://localhost:8080/confirm?email=' + ${email}}">Confirm</a>
         </div>
     </body>
 </html>
-
-<script>
-    const email = document.getElementById("hiddenEmail").value;
-    $(document).ready(function() {
-    $("#confirmBtn").click(function() {
-        $.get("http://localhost:8080/confirm", { email: email }, function(data, status) {
-        console.log("Data: " + data + "\nStatus: " + status); 
-        });
-    });
-    });
-</script>

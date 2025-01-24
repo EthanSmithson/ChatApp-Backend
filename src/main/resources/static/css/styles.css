@@ -1,0 +1,25 @@
+.container {
+    width: fit-content;
+    height: 100%;
+    background: #26282B;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.confirmBtn {
+    text-decoration: none;
+    background: #5F85DB;
+    padding: 6px;
+    display: flex;
+    width: 50px;
+    height: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8%;
+}

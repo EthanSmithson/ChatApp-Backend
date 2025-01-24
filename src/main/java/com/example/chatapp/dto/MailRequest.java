@@ -18,6 +18,8 @@ public class MailRequest {
 
     private String message;
 
+    private String Name;
+
     @JsonAlias(value = "html")
     private boolean isHTML;
 }
