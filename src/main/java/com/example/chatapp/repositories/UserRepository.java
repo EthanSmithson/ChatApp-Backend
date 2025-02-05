@@ -19,5 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
    @Transactional
    @Query("UPDATE User SET confirmed = 1 WHERE email = :email")
    void updateToConfirm(@Param("email") String email);
+
+   @Query("SELECT COUNT(*) FROM User u WHERE (u.username = :userName OR u.email = :userName) AND (u.password = :password) GROUP BY :userName")
+   Integer loginUser(@Param("userName") String userName, @Param("password") String password);
    
  }

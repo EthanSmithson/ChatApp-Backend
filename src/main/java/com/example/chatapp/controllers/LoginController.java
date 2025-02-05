@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.chatapp.services.*;
 
@@ -20,14 +21,18 @@ import java.util.Map;
 public class LoginController {
 
 	@Autowired
-    private ContactMeService contactMeService;
+    private LoginService loginService;
 
 	@CrossOrigin(origins = "http://localhost:3000/")
 	@PostMapping("/login")
 		public Object login(@RequestBody Map<String, String> formData) {
 
-            System.out.println(formData);
+			Integer loggedIn = loginService.userExists(formData);
             
-            return formData;
+			if (loggedIn == 1){
+				return ResponseEntity.ok("User Logged In!");
+			} else {
+				return ResponseEntity.badRequest().body("Login Unsuccessful!");
+			}
 		}
 }
