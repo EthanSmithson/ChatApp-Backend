@@ -30,9 +30,15 @@ public class LoginController {
 			Integer loggedIn = loginService.userExists(formData);
             
 			if (loggedIn == 1){
-				return ResponseEntity.ok("User Logged In!");
+				Object jsonObject = new Object() {
+					public String message = "User Logged In!";
+				};
+				return ResponseEntity.ok(jsonObject);
 			} else {
-				return ResponseEntity.badRequest().body("Login Unsuccessful!");
+				Object jsonObject = new Object() {
+					public String message = "Login Unsuccessful!";
+				};
+				return ResponseEntity.badRequest().body(jsonObject);
 			}
 		}
 }
