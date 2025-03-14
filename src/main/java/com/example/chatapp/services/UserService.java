@@ -55,4 +55,8 @@ public class UserService {
 
     }
 
+    public List<Object> getFullUser(String user) {
+        return userRepository.getFullUsers(user);
+    }
+
 }
