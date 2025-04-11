@@ -23,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
    @Query("SELECT COUNT(*) FROM User u WHERE (u.username = :userName OR u.email = :userName) AND (u.password = :password) GROUP BY :userName")
    Integer loginUser(@Param("userName") String userName, @Param("password") String password);
 
-   @Query("SELECT username FROM User u WHERE u.username LIKE %:user%")
+   @Query("SELECT username, id FROM User u WHERE u.username LIKE %:user%")
    List<Object> getFullUsers(@Param("user") String user);
    
  }

@@ -11,4 +11,9 @@ public class CommunityService {
     @Autowired 
     private CommunityRepository communityRepository;
 
+    public Boolean createCommunity(Object formData) {
+        Boolean communityCreated = communityRepository.createCommunity(formData);
+        return communityCreated;
+    }
+
 }
