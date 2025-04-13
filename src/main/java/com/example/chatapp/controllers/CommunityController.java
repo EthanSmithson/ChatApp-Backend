@@ -14,6 +14,7 @@ import com.example.chatapp.services.CommunityService;
 import com.example.chatapp.services.UserService;
 import java.util.List;
 import java.util.Map;
+import com.example.chatapp.models.Communities;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.*;
@@ -45,16 +46,17 @@ public class CommunityController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
 	@PostMapping("/createCommunity")
-    public Object ContactMe(@RequestBody Map<String, Object> formData) {
+    public Object ContactMe(@RequestBody Communities formData) {
         System.out.println(formData);
 
-        Boolean communityCreated = communityService.createCommunity(formData);
+        // Boolean communityCreated = communityService.createCommunity(formData);
+        communityService.createCommunity(formData);
 
-        if (communityCreated) {
+        // if (communityCreated) {
             return ResponseEntity.status(201).body("Community Created!");
-        } else {
-            return ResponseEntity.status(400).body("Error when creating Community!");
-        }
+        // } else {
+        //     return ResponseEntity.status(400).body("Error when creating Community!");
+        // }
         
     }
 

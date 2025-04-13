@@ -10,9 +10,4 @@ import jakarta.transaction.Transactional;
 
 public interface CommunityRepository extends JpaRepository<Communities, Long> {
 
-    @Modifying
-    @Transactional
-    @Query("INSERT INTO Communities (id, communityTitle, communityDescription, communityPrivacy, communityTags, communityMembers) VALUES ()")
-    Boolean createCommunity(@Param("email") Object data);
-   
  }
