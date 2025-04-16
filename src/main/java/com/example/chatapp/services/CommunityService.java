@@ -14,7 +14,6 @@ public class CommunityService {
 
     @Autowired 
     private CommunityRepository communityRepository;
-    // private Map<Long, Long> tagReltns = new HashMap<Long, Long>();
 
     public Boolean createCommunity(Communities community) {
         communityRepository.save(community);
@@ -24,10 +23,12 @@ public class CommunityService {
             System.out.println(community.getCommunityTags());
             List<Long> myTags = community.getCommunityTags();
             for (int i=0; i < myTags.size(); i++) {
-                // tagReltns.put(community.getCommunityId(), myTags.get(i));
                 communityRepository.createCommunityTagReltn(community.getCommunityId(), myTags.get(i));
             }
-            // System.out.println(tagReltns);
+            List<Long> myMembers = community.getCommunityMembers();
+            for (int i=0; i < myMembers.size(); i++) {
+                communityRepository.createCommunityMemberReltn(community.getCommunityId(), myMembers.get(i));
+            }
         }
         return true;
     }
